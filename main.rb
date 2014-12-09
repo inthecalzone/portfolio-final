@@ -50,24 +50,13 @@ get "/socialmedia" do
       #config.client_ips = '<Comma separated list of IPs>'
     end
     
- 
-     #@ig_results = []  
-    #client = Instagram.client(:access_token => session[:access_token])
- # tags = client.tag_search('#CanadianTuxedo')
-  #html << "<h2>Tag Name = #{tags[0].name}. Media Count =  #{tags[0].media_count}. </h2><br/><br/>"
-  #for media_item in client.tag_recent_media(tags[0].name)        
-      #@ig_results.push(media_item) 
-   # html << "<img src='#{media_item.images.thumbnail.url}'>"
-  #end    
 
     
     @ig_results = [] 
       client = Instagram.client(:access_token => session[:access_token])
-      #user = client.user
-      #html = "<h1>#{user.username}'s recent media</h1>"
       for media_item in client.user_recent_media(16964038)
                 @ig_results.push(media_item) 
-        #html << "<div style='float:left;'><img src='#{media_item.images.thumbnail.url}'><br/> <a href='/media_like/#{media_item.id}'>Like</a>  <a href='/media_unlike/#{media_item.id}'>Un-Like</a>  <br/>LikesCount=#{media_item.likes[:count]}</div>"
+
       end
 
 
